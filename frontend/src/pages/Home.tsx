@@ -115,9 +115,9 @@ export function HomePage() {
       <div className="mx-5 mb-5">
         <div className="t-label mb-3">о мастере</div>
         <p className="t-body mb-4">
-          Привет, я <span className="text-v-white">@rizzie044</span> — звукоинженер.
-          Сведение и мастеринг с 2023 года. Работаю с электроникой,
-          хип-хопом, экспериментальными жанрами.
+          Я <span className="text-v-white">Shiny Ruby</span> — mix engineer и self-prod
+          с аудиторией 130к+ слушателей на Яндексе.
+          Знаю как сделать из твоего трека что-то реально мощное.
         </p>
         <div className="flex gap-2">
           <a
