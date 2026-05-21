@@ -7,19 +7,10 @@ const STATS = [
   { value: '24ч',  label: 'экспресс' },
 ]
 
-/* Animated oscilloscope with running shimmer */
+/* Animated oscilloscope — traveling light via phase offset */
 function OsciTrace() {
   return (
-    <div className="relative flex items-end gap-px h-5 overflow-hidden">
-      {/* Running highlight */}
-      <div
-        className="absolute inset-0 pointer-events-none z-10"
-        style={{
-          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.22) 50%, transparent 100%)',
-          width: '25%',
-          animation: 'shimmer 2.8s linear infinite',
-        }}
-      />
+    <div className="flex items-end gap-px h-5 overflow-hidden">
       {Array.from({ length: 52 }).map((_, i) => {
         const y = 50 + Math.sin(i * 0.5) * 36 + Math.sin(i * 1.05) * 13
         return (
@@ -31,9 +22,8 @@ function OsciTrace() {
               marginRight: 1,
               height: `${y}%`,
               background: '#ffffff',
-              opacity: 0.28,
-              boxShadow: '0 0 3px rgba(255,255,255,0.4)',
-              animationDelay: `${(i * 0.06) % 1.4}s`,
+              /* delay spreads 0..1.6s across all bars — peak brightness travels left→right */
+              animationDelay: `${-(i * (1.6 / 52))}s`,
             }}
           />
         )

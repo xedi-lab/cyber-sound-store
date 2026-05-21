@@ -237,13 +237,14 @@ html, body {
 }
 
 /* ════════════════════════════════════════
-   OSCI BAR — individual bar animation
+   OSCI BAR — traveling wave via phase offset
 ════════════════════════════════════════ */
 @keyframes osci {
-  from { transform: scaleY(0.3); }
-  to   { transform: scaleY(1); }
+  0%   { transform: scaleY(0.25); opacity: 0.15; }
+  50%  { transform: scaleY(1);    opacity: 0.7;  }
+  100% { transform: scaleY(0.25); opacity: 0.15; }
 }
 .osci-bar {
   transform-origin: bottom;
-  animation: osci 1.4s ease-in-out infinite alternate;
+  animation: osci 1.6s ease-in-out infinite;
 }
