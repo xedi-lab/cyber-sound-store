@@ -18,12 +18,27 @@ export function ProfilePage() {
 
   return (
     <div className="page-enter pb-20 min-h-screen">
-      <div className="px-5 pt-10">
 
-        <div className="mb-6">
-          <div className="t-label mb-3">root / profile</div>
+      {/* Video header */}
+      <div className="relative h-40 overflow-hidden">
+        <video
+          autoPlay muted loop playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.2, filter: 'blur(0.5px)' }}
+        >
+          <source src="/profile.mp4" type="video/mp4" />
+        </video>
+        <div
+          className="absolute inset-0"
+          style={{ background: 'linear-gradient(to bottom, rgba(17,17,17,0.2) 0%, rgba(17,17,17,0.95) 100%)' }}
+        />
+        <div className="absolute bottom-4 left-5 z-10">
+          <div className="t-label mb-1">root / profile</div>
           <div className="t-title text-[26px]">PROFILE</div>
         </div>
+      </div>
+
+      <div className="px-5 pt-4">
 
         {/* User */}
         <div className="card p-5 mb-4">
@@ -108,3 +123,4 @@ export function ProfilePage() {
     </div>
   )
 }
+
