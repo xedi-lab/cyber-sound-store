@@ -23,7 +23,20 @@ export function BootScreen({ onDone }: Props) {
 
   return (
     <div className="fixed inset-0 z-50 bg-v-bg flex flex-col items-center justify-center px-8">
-      <div className="w-full max-w-xs">
+      {/* Background video */}
+      <video
+        autoPlay muted loop playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.18, filter: 'blur(1px)' }}
+      >
+        <source src="/boot.mp4" type="video/mp4" />
+      </video>
+      {/* Dark vignette over video */}
+      <div
+        className="absolute inset-0"
+        style={{ background: 'radial-gradient(ellipse at center, transparent 30%, #111111 100%)' }}
+      />
+      <div className="w-full max-w-xs relative z-10">
         <div className="mb-8">
           <div className="t-heading mb-1">CYBER SOUND STORE</div>
           <div className="t-label">high voltage audio</div>
@@ -43,3 +56,4 @@ export function BootScreen({ onDone }: Props) {
     </div>
   )
 }
+

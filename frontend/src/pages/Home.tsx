@@ -39,7 +39,21 @@ export function HomePage() {
     <div className="page-enter pb-16 min-h-screen">
 
       {/* ── Hero ── */}
-      <div className="px-5 pt-14 pb-10">
+      <div className="relative px-5 pt-14 pb-10 overflow-hidden">
+        {/* Background video */}
+        <video
+          autoPlay muted loop playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.14, filter: 'blur(0.5px)' }}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        {/* Fade to bg at bottom */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to bottom, rgba(17,17,17,0.3) 0%, rgba(17,17,17,0.0) 40%, rgba(17,17,17,0.85) 100%)' }}
+        />
+        <div className="relative z-10">
         <div className="t-label mb-5">
           <span
             className="inline-block w-1.5 h-1.5 rounded-full bg-v-white mr-2 align-middle"
@@ -59,6 +73,7 @@ export function HomePage() {
         <button onClick={() => navigate('/services')} className="btn btn-primary px-8">
           услуги
         </button>
+        </div>
       </div>
 
       {/* ── Stats ── */}
