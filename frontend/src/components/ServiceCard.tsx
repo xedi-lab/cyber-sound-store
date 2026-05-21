@@ -13,27 +13,22 @@ export function ServiceCard({ service }: Props) {
     >
       <div className="flex items-start justify-between mb-3">
         <div className="tag">{service.tag}</div>
-        {service.slots && <div className="tag tag-white">{service.slots} SLOTS</div>}
+        {service.slots && <div className="tag tag-hi">{service.slots} slots</div>}
       </div>
 
-      <div className="flex items-center gap-3 mb-2">
-        <div className="text-xl">{service.icon}</div>
-        <div>
-          <div className="heading-sm">{service.title}</div>
-          <div className="label mt-0.5">{service.subtitle}</div>
-        </div>
-      </div>
+      <div className="t-heading mb-1">{service.title}</div>
+      <div className="t-label mb-3">{service.subtitle}</div>
 
-      <p className="body-text mb-4 line-clamp-2">{service.description}</p>
+      <p className="t-body mb-4 line-clamp-2">{service.description}</p>
 
       <div className="flex items-end justify-between">
         <div>
           {service.oldPrice && (
-            <div className="price-old">{service.oldPrice.toLocaleString('ru-RU')} ₽</div>
+            <div className="t-price-old">{service.oldPrice.toLocaleString('ru-RU')} ₽</div>
           )}
-          <div className="price text-lg">{service.price.toLocaleString('ru-RU')} ₽</div>
+          <div className="t-price text-lg">{service.price.toLocaleString('ru-RU')} ₽</div>
         </div>
-        <div className="label group-hover:text-v-white transition-colors">ОТКРЫТЬ →</div>
+        <div className="t-label group-hover:text-v-white transition-colors">открыть →</div>
       </div>
     </button>
   )

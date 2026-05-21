@@ -1,5 +1,3 @@
-import { GlitchText } from '../components/GlitchText'
-
 const MOCK_USER = {
   name: 'USER', tgId: '—', balance: 0,
   orders: [] as Order[], referrals: 0, referralEarnings: 0,
@@ -10,9 +8,9 @@ interface Order {
 }
 
 const STATUS_MAP = {
-  pending:     { text: 'ОЖИДАНИЕ',  color: 'text-amber-400',  dot: 'bg-amber-400' },
-  in_progress: { text: 'В РАБОТЕ',  color: 'text-v-white',    dot: 'bg-v-white' },
-  done:        { text: 'ГОТОВО',    color: 'text-green-400',  dot: 'bg-green-400' },
+  pending:     { text: 'ожидание', color: 'text-amber-500' },
+  in_progress: { text: 'в работе', color: 'text-v-white' },
+  done:        { text: 'готово',   color: 'text-green-500' },
 }
 
 export function ProfilePage() {
@@ -20,29 +18,24 @@ export function ProfilePage() {
 
   return (
     <div className="page-enter pb-20 min-h-screen">
-      <div className="px-4 pt-8">
+      <div className="px-5 pt-10">
 
         <div className="mb-6">
-          <div className="label mb-2">root / profile</div>
-          <GlitchText
-            text="PROFILE"
-            tag="h1"
-            scramble
-            className="heading-lg text-2xl"
-          />
+          <div className="t-label mb-3">root / profile</div>
+          <div className="t-title text-[26px]">PROFILE</div>
         </div>
 
-        {/* User card */}
+        {/* User */}
         <div className="card p-5 mb-4">
-          <div className="label mb-3">USER DATA</div>
-          <div className="space-y-2">
+          <div className="t-label mb-3">данные</div>
+          <div className="space-y-2.5">
             {([
-              ['ИМЯ',         user.name],
-              ['TELEGRAM_ID', user.tgId],
-              ['БАЛАНС',      `${user.balance.toLocaleString('ru-RU')} ₽`],
+              ['имя',         user.name],
+              ['telegram id', user.tgId],
+              ['баланс',      `${user.balance.toLocaleString('ru-RU')} ₽`],
             ] as [string, string][]).map(([label, val]) => (
               <div key={label} className="flex justify-between items-baseline">
-                <span className="label">{label}</span>
+                <span className="t-label">{label}</span>
                 <span className="font-mono text-[12px] text-v-white">{val}</span>
               </div>
             ))}
@@ -51,12 +44,11 @@ export function ProfilePage() {
 
         {/* Orders */}
         <div className="mb-4">
-          <div className="label mb-3">ИСТОРИЯ ЗАКАЗОВ [{user.orders.length}]</div>
+          <div className="t-label mb-3">история заказов [{user.orders.length}]</div>
 
           {user.orders.length === 0 ? (
-            <div className="card p-6 text-center">
-              <div className="label">ЗАКАЗОВ НЕТ</div>
-              <div className="label mt-1">Твои заказы появятся здесь</div>
+            <div className="card p-5 text-center">
+              <div className="t-label">заказов нет</div>
             </div>
           ) : (
             <div className="space-y-2">
@@ -65,15 +57,12 @@ export function ProfilePage() {
                 return (
                   <div key={order.id} className="card p-4">
                     <div className="flex items-center justify-between mb-2">
-                      <div className="heading-sm">{order.service}</div>
-                      <div className={`flex items-center gap-1.5 font-mono text-[9px] ${s.color}`}>
-                        <div className={`w-1.5 h-1.5 rounded-full ${s.dot} animate-pulse`} />
-                        {s.text}
-                      </div>
+                      <div className="t-heading">{order.service}</div>
+                      <div className={`t-label ${s.color}`}>{s.text}</div>
                     </div>
                     <div className="flex justify-between">
-                      <span className="label">{order.date}</span>
-                      <span className="label">{order.price.toLocaleString('ru-RU')} ₽</span>
+                      <span className="t-label">{order.date}</span>
+                      <span className="t-label">{order.price.toLocaleString('ru-RU')} ₽</span>
                     </div>
                   </div>
                 )
@@ -84,40 +73,35 @@ export function ProfilePage() {
 
         {/* Referral */}
         <div className="mb-4">
-          <div className="label mb-3">РЕФЕРАЛЬНАЯ СИСТЕМА</div>
+          <div className="t-label mb-3">реферальная система</div>
           <div className="card p-5">
             <div className="flex mb-4">
               <div className="text-center flex-1">
-                <div className="price text-2xl">{user.referrals}</div>
-                <div className="label mt-1">РЕФЕРАЛОВ</div>
+                <div className="t-price text-[22px]">{user.referrals}</div>
+                <div className="t-label mt-1">рефералов</div>
               </div>
               <div className="w-px bg-v-border mx-4" />
               <div className="text-center flex-1">
-                <div className="price text-2xl">{user.referralEarnings}</div>
-                <div className="label mt-1">ЗАРАБОТАНО ₽</div>
+                <div className="t-price text-[22px]">{user.referralEarnings}</div>
+                <div className="t-label mt-1">заработано ₽</div>
               </div>
             </div>
-            <div className="label text-center mb-4">
-              5% С КАЖДОЙ ПОКУПКИ ТВОЕГО РЕФЕРАЛА
-            </div>
-            <button className="btn btn-outline w-full text-[10px]">
-              СКОПИРОВАТЬ ССЫЛКУ
-            </button>
+            <div className="t-label text-center mb-4">5% с каждой покупки реферала</div>
+            <button className="btn btn-outline w-full">скопировать ссылку</button>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-2 mb-4">
-          <button className="btn btn-outline text-[10px]">АКТИВИРОВАТЬ КУПОН</button>
-          <button className="btn btn-outline text-[10px]">ПОПОЛНИТЬ БАЛАНС</button>
+          <button className="btn btn-outline text-[10px]">активировать купон</button>
+          <button className="btn btn-outline text-[10px]">пополнить баланс</button>
         </div>
 
-        <div className="card p-4">
-          <p className="body-text">
-            Товары и услуги не подлежат возврату. Вопросы —{' '}
-            <a href="https://t.me/rizzie044" className="text-v-white underline decoration-v-border2">
-              @rizzie044
-            </a>
-          </p>
+        <div className="t-body">
+          Товары и услуги не подлежат возврату.{' '}
+          Вопросы —{' '}
+          <a href="https://t.me/rizzie044" className="text-v-white underline decoration-v-border2">
+            @rizzie044
+          </a>
         </div>
 
       </div>

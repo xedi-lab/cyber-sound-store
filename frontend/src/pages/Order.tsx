@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { GlitchText } from '../components/GlitchText'
 import { SERVICES, MIXING_TARIFFS } from '../data/services'
 
 type Step = 'form' | 'success'
@@ -34,24 +33,17 @@ export function OrderPage() {
   if (step === 'success') {
     return (
       <div className="page-enter min-h-screen flex flex-col items-center justify-center px-6 pb-20">
-        <div className="divider-bright w-16 mb-8" />
-        <GlitchText
-          text="ЗАЯВКА ПРИНЯТА"
-          tag="div"
-          scramble
-          className="heading-md mb-3 text-center"
-        />
-        <p className="body-text text-center mb-8 max-w-xs">
-          Заявка отправлена.{' '}
+        <div className="t-title text-[22px] mb-3 text-center">заявка принята</div>
+        <p className="t-body text-center mb-8 max-w-xs">
           <span className="text-v-white">@rizzie044</span>{' '}
           напишет тебе в ближайшее время.
         </p>
         <div className="space-y-2 w-full max-w-xs">
           <button onClick={() => navigate('/')} className="btn btn-primary w-full">
-            НА ГЛАВНУЮ
+            на главную
           </button>
           <button onClick={() => navigate('/services')} className="btn btn-outline w-full">
-            ЕЩЁ УСЛУГИ
+            ещё услуги
           </button>
         </div>
       </div>
@@ -60,37 +52,35 @@ export function OrderPage() {
 
   return (
     <div className="page-enter pb-20 min-h-screen">
-      <div className="px-4 pt-8">
+      <div className="px-5 pt-10">
 
         <button
           onClick={() => navigate(-1)}
-          className="label hover:text-v-white mb-5 flex items-center gap-1 transition-colors"
+          className="t-label hover:text-v-white mb-6 flex items-center gap-1 transition-colors"
         >
-          ← НАЗАД
+          ← назад
         </button>
 
         <div className="mb-6">
-          <div className="label mb-2">root / order</div>
-          <div className="heading-lg text-2xl">ORDER</div>
+          <div className="t-label mb-3">root / order</div>
+          <div className="t-title text-[26px]">ORDER</div>
         </div>
 
         {/* Selected */}
         <div className="card p-4 mb-6">
-          <div className="label mb-1">ВЫБРАННАЯ УСЛУГА</div>
-          <div className="heading-sm mt-1">{selectedLabel}</div>
-          {tariff && (
-            <div className="label mt-1">Срок: {tariff.deadline}</div>
-          )}
+          <div className="t-label mb-1">выбранная услуга</div>
+          <div className="t-heading mt-1">{selectedLabel}</div>
+          {tariff && <div className="t-label mt-1">срок: {tariff.deadline}</div>}
         </div>
 
         {/* Form */}
         <div className="space-y-4 mb-6">
           {[
-            { label: 'ИМЯ *',      key: 'name', ph: 'КАК К ТЕБЕ ОБРАЩАТЬСЯ', type: 'text' },
-            { label: 'TELEGRAM *', key: 'tg',   ph: '@USERNAME',              type: 'text' },
+            { label: 'имя *',      key: 'name', ph: 'как к тебе обращаться', type: 'text' },
+            { label: 'telegram *', key: 'tg',   ph: '@username',              type: 'text' },
           ].map(f => (
             <div key={f.key}>
-              <label className="label block mb-1.5">{f.label}</label>
+              <label className="t-label block mb-1.5">{f.label}</label>
               <input
                 type={f.type}
                 value={form[f.key as keyof typeof form]}
@@ -102,21 +92,21 @@ export function OrderPage() {
           ))}
 
           <div>
-            <label className="label block mb-1.5">КОММЕНТАРИЙ</label>
+            <label className="t-label block mb-1.5">комментарий</label>
             <textarea
               value={form.comment}
               onChange={e => setForm(prev => ({ ...prev, comment: e.target.value }))}
-              placeholder="ЖАНР, РЕФЕРЕНСЫ, ПОЖЕЛАНИЯ..."
+              placeholder="жанр, референсы, пожелания..."
               rows={3}
               className="input resize-none"
             />
           </div>
         </div>
 
-        <p className="body-text mb-6">
+        <p className="t-body mb-6">
           После отправки{' '}
           <span className="text-v-white">@rizzie044</span>{' '}
-          напишет тебе в Telegram. Возврат средств не предусмотрен.
+          напишет в Telegram. Возврат не предусмотрен.
         </p>
 
         <button
@@ -124,7 +114,7 @@ export function OrderPage() {
           disabled={!form.name.trim() || !form.tg.trim() || loading}
           className="btn btn-primary w-full"
         >
-          {loading ? 'ОТПРАВКА...' : 'ОТПРАВИТЬ ЗАЯВКУ →'}
+          {loading ? 'отправка...' : 'отправить заявку →'}
         </button>
 
       </div>

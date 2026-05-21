@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { Typewriter } from './GlitchText'
 
 const BOOT_LINES = [
-  '> INITIALIZING CYBER_SOUND_STORE...',
-  '> AUDIO ENGINE.............. [OK]',
-  '> SIGNAL CHAIN.............. [OK]',
-  '> VOLTAGE: 220V ............ [ARMED]',
-  '> ACCESS GRANTED',
+  '> initializing...',
+  '> audio engine.......... ok',
+  '> signal chain.......... ok',
+  '> voltage: 220v......... armed',
+  '> access granted',
 ]
 
 interface Props { onDone: () => void }
@@ -25,23 +25,20 @@ export function BootScreen({ onDone }: Props) {
     <div className="fixed inset-0 z-50 bg-v-bg flex flex-col items-center justify-center px-8">
       <div className="w-full max-w-xs">
         <div className="mb-8">
-          <div className="font-display font-black text-lg text-v-white tracking-widest mb-1">
-            CYBER SOUND STORE
-          </div>
-          <div className="label">HIGH VOLTAGE AUDIO</div>
+          <div className="t-heading mb-1">CYBER SOUND STORE</div>
+          <div className="t-label">high voltage audio</div>
         </div>
 
-        <div className="card p-4 mb-5">
-          <Typewriter lines={BOOT_LINES} speed={28} onDone={handleDone} />
+        <div className="card p-4 mb-6">
+          <Typewriter lines={BOOT_LINES} speed={30} onDone={handleDone} />
         </div>
 
         <div className="h-px bg-v-border overflow-hidden">
           <div
-            className="h-full bg-v-white transition-all duration-[2800ms] ease-linear"
-            style={{ width: '100%', opacity: 0.4 }}
+            className="h-full bg-v-white transition-all duration-[2800ms] ease-linear opacity-30"
+            style={{ width: '100%' }}
           />
         </div>
-        <div className="label mt-2">SYSTEM BOOT...</div>
       </div>
     </div>
   )

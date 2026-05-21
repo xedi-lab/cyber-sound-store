@@ -5,41 +5,32 @@ export default {
     extend: {
       colors: {
         v: {
-          bg:       '#080808',
-          surface:  '#101010',
-          surface2: '#161616',
-          border:   '#1e1e1e',
-          border2:  '#2a2a2a',
-          white:    '#f0f0f0',
-          gray1:    '#aaaaaa',
-          gray2:    '#6b6b6b',
-          gray3:    '#333333',
+          bg:       '#0a0a0a',
+          surface:  '#0e0e0e',
+          surface2: '#131313',
+          border:   '#181818',
+          border2:  '#222222',
+          white:    '#efefef',
+          gray1:    '#999999',
+          gray2:    '#555555',
+          gray3:    '#2a2a2a',
         },
       },
       fontFamily: {
-        mono:    ['"JetBrains Mono"', 'Courier New', 'monospace'],
-        display: ['"Orbitron"', 'monospace'],
+        mono: ['"JetBrains Mono"', 'Courier New', 'monospace'],
       },
       animation: {
-        'flicker': 'flicker 9s infinite',
         'vu':      'vu 0.65s ease-in-out infinite alternate',
-        'hum':     'hum 4s ease-in-out infinite',
+        'dot':     'dot 3s ease-in-out infinite',
       },
       keyframes: {
-        flicker: {
-          '0%,93%,100%': { opacity: '1' },
-          '94%':          { opacity: '0.82' },
-          '95%':          { opacity: '1' },
-          '97%':          { opacity: '0.88' },
-          '98%':          { opacity: '1' },
-        },
         vu: {
-          from: { transform: 'scaleY(0.15)', opacity: '0.3' },
-          to:   { transform: 'scaleY(1)',    opacity: '0.9' },
+          from: { transform: 'scaleY(0.12)', opacity: '0.25' },
+          to:   { transform: 'scaleY(1)',    opacity: '0.85' },
         },
-        hum: {
-          '0%,100%': { opacity: '1' },
-          '50%':     { opacity: '0.92' },
+        dot: {
+          '0%,100%': { opacity: '0.2' },
+          '50%':     { opacity: '0.7' },
         },
       },
     },

@@ -12,44 +12,35 @@ export function TariffCard({ tariff }: Props) {
     <div className="card p-5">
       <div className="flex items-start justify-between mb-4">
         <div>
-          {tariff.badge && (
-            <div className="tag tag-white mb-2">{tariff.badge}</div>
-          )}
-          <div className="heading-sm">{tariff.name}</div>
-          <div className="label mt-0.5">{tariff.label}</div>
+          {tariff.badge && <div className="tag tag-hi mb-2">{tariff.badge}</div>}
+          <div className="t-heading">{tariff.name}</div>
+          <div className="t-label mt-1">{tariff.label}</div>
         </div>
         <div className="text-right">
-          <div className="price text-xl">
-            {tariff.price.toLocaleString('ru-RU')} ₽
-          </div>
+          <div className="t-price">{tariff.price.toLocaleString('ru-RU')} ₽</div>
           {tariff.oldPrice && (
-            <div className="price-old">
-              {tariff.oldPrice.toLocaleString('ru-RU')} ₽
-            </div>
+            <div className="t-price-old">{tariff.oldPrice.toLocaleString('ru-RU')} ₽</div>
           )}
         </div>
       </div>
 
-      <div className="flex items-center gap-2 mb-4">
-        <span className="label">—</span>
-        <span className="label">Срок: {tariff.deadline}</span>
-      </div>
+      <div className="t-label mb-3">срок: {tariff.deadline}</div>
 
-      <p className="body-text mb-4">{tariff.description}</p>
+      <p className="t-body mb-4">{tariff.description}</p>
 
       <button
         onClick={() => setExpanded(e => !e)}
-        className="btn btn-ghost w-full justify-start px-0 mb-1 text-[10px]"
+        className="btn btn-ghost w-full justify-start text-[10px]"
       >
-        <span className="mr-2 text-v-gray2">{expanded ? '▼' : '▶'}</span>
-        КАК ПРОИСХОДИТ ОПЛАТА
+        <span className="mr-2">{expanded ? '▼' : '▶'}</span>
+        как происходит оплата
       </button>
 
       {expanded && (
-        <div className="border-l border-v-border2 pl-4 mb-4 space-y-2">
+        <div className="border-l border-v-border2 pl-4 mt-2 mb-4 space-y-2">
           {tariff.paymentFlow.map((step, i) => (
-            <div key={i} className="flex gap-2 body-text">
-              <span className="text-v-white flex-shrink-0 font-bold">{i + 1}.</span>
+            <div key={i} className="flex gap-2 t-body">
+              <span className="text-v-white flex-shrink-0">{i + 1}.</span>
               <span>{step}</span>
             </div>
           ))}
@@ -62,7 +53,7 @@ export function TariffCard({ tariff }: Props) {
         onClick={() => navigate(`/order?tariff=${tariff.id}`)}
         className="btn btn-primary w-full"
       >
-        ЗАКАЗАТЬ
+        заказать
       </button>
     </div>
   )

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,8 +7,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  background: #080808;
-  color: #aaaaaa;
+  background: #0a0a0a;
+  color: #555555;
   font-family: 'JetBrains Mono', monospace;
   overflow-x: hidden;
   min-height: 100vh;
@@ -21,25 +21,15 @@ html, body {
    CARDS
 ════════════════════════════════════════ */
 .card {
-  background: #101010;
-  border: 1px solid #1e1e1e;
-  border-radius: 1px;
+  background: #0e0e0e;
+  border: 1px solid #181818;
   position: relative;
-  transition: border-color 0.2s;
+  transition: border-color 0.25s, background 0.25s;
 }
-.card:hover { border-color: #2a2a2a; }
-
-/* Thin white top accent on hover */
-.card::before {
-  content: '';
-  position: absolute;
-  top: -1px; left: 30%; right: 30%;
-  height: 1px;
-  background: rgba(255,255,255,0.25);
-  opacity: 0;
-  transition: opacity 0.3s, left 0.3s, right 0.3s;
+.card:hover {
+  border-color: #222222;
+  background: #111111;
 }
-.card:hover::before { opacity: 1; left: 15%; right: 15%; }
 
 /* ════════════════════════════════════════
    BUTTONS
@@ -51,127 +41,99 @@ html, body {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   padding: 12px 24px;
-  border-radius: 1px;
   cursor: pointer;
   transition: all 0.18s;
 }
 
 .btn-primary {
-  background: #f0f0f0;
-  color: #080808;
-  border: 1px solid #f0f0f0;
+  background: #efefef;
+  color: #0a0a0a;
+  border: 1px solid #efefef;
   font-weight: 700;
 }
-.btn-primary:hover {
-  background: #ffffff;
-  box-shadow: 0 0 24px rgba(255,255,255,0.12);
-}
-.btn-primary:active { transform: scale(0.98); }
-.btn-primary:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
+.btn-primary:hover { background: #ffffff; }
+.btn-primary:active { transform: scale(0.99); }
+.btn-primary:disabled { opacity: 0.25; cursor: not-allowed; }
 
 .btn-outline {
   background: transparent;
-  color: #6b6b6b;
-  border: 1px solid #1e1e1e;
+  color: #555555;
+  border: 1px solid #181818;
 }
 .btn-outline:hover {
-  border-color: #3a3a3a;
-  color: #f0f0f0;
+  border-color: #333333;
+  color: #efefef;
 }
 
 .btn-ghost {
   background: transparent;
-  color: #4a4a4a;
+  color: #383838;
   border: 1px solid transparent;
-  padding: 8px 16px;
+  padding: 8px 0;
 }
-.btn-ghost:hover { color: #aaaaaa; }
+.btn-ghost:hover { color: #777777; }
 
 /* ════════════════════════════════════════
-   TYPOGRAPHY
+   TYPOGRAPHY — JetBrains Mono only
 ════════════════════════════════════════ */
-.heading-xl {
-  font-family: 'Orbitron', monospace;
-  font-weight: 900;
-  color: #f0f0f0;
-  letter-spacing: 0.06em;
-  line-height: 1;
-  animation: flicker 9s infinite;
-}
-.heading-lg {
-  font-family: 'Orbitron', monospace;
+.t-title {
   font-weight: 700;
-  color: #f0f0f0;
-  letter-spacing: 0.05em;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  color: #efefef;
   line-height: 1.1;
 }
-.heading-md {
-  font-family: 'Orbitron', monospace;
+.t-heading {
   font-weight: 700;
-  color: #f0f0f0;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: 0.06em;
+  color: #efefef;
 }
-.heading-sm {
-  font-family: 'Orbitron', monospace;
-  font-weight: 700;
-  color: #f0f0f0;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-}
-.label {
-  font-family: 'JetBrains Mono', monospace;
+.t-label {
   font-size: 10px;
   font-weight: 400;
-  color: #6b6b6b;
-  letter-spacing: 0.12em;
+  color: #444444;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.body-text {
-  font-family: 'JetBrains Mono', monospace;
+.t-body {
   font-size: 12px;
-  line-height: 1.75;
-  color: #6b6b6b;
+  line-height: 1.8;
+  color: #555555;
 }
-.price {
-  font-family: 'Orbitron', monospace;
+.t-price {
   font-weight: 700;
-  color: #f0f0f0;
-  letter-spacing: 0.04em;
+  font-size: 20px;
+  color: #efefef;
+  letter-spacing: 0.02em;
 }
-.price-old {
-  font-family: 'JetBrains Mono', monospace;
+.t-price-old {
   font-size: 10px;
-  color: #333333;
+  color: #2e2e2e;
   text-decoration: line-through;
 }
 
 /* ════════════════════════════════════════
-   TAG / BADGE
+   TAG
 ════════════════════════════════════════ */
 .tag {
   display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
   font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 3px 8px;
-  border-radius: 1px;
-  background: #161616;
-  border: 1px solid #2a2a2a;
-  color: #6b6b6b;
+  padding: 3px 7px;
+  background: #111111;
+  border: 1px solid #1e1e1e;
+  color: #444444;
 }
-.tag-white {
-  background: #f0f0f0;
-  border-color: #f0f0f0;
-  color: #080808;
+.tag-hi {
+  background: #efefef;
+  border-color: #efefef;
+  color: #0a0a0a;
   font-weight: 700;
 }
 
@@ -180,46 +142,40 @@ html, body {
 ════════════════════════════════════════ */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #1e1e1e, transparent);
-}
-.divider-bright {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  background: #141414;
 }
 
 /* ════════════════════════════════════════
-   FORM INPUTS
+   FORM
 ════════════════════════════════════════ */
 .input {
   width: 100%;
   background: #0c0c0c;
-  border: 1px solid #1e1e1e;
-  border-radius: 1px;
-  color: #f0f0f0;
+  border: 1px solid #181818;
+  color: #efefef;
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   padding: 12px 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.18s;
 }
-.input::placeholder { color: #333333; }
-.input:focus { border-color: #3a3a3a; }
+.input::placeholder { color: #282828; }
+.input:focus { border-color: #303030; }
 
 /* ════════════════════════════════════════
-   AUDIO / VU METER
+   AUDIO / VU
 ════════════════════════════════════════ */
 .vu-bar {
-  border-radius: 1px;
   animation: vu 0.65s ease-in-out infinite alternate;
   transform-origin: bottom;
 }
 .vu-bar:nth-child(odd)  { animation-delay: 0.08s; }
-.vu-bar:nth-child(3n)   { animation-delay: 0.16s; }
+.vu-bar:nth-child(3n)   { animation-delay: 0.18s; }
 .vu-bar:nth-child(4n)   { animation-delay: 0.04s; }
 
 @keyframes vu {
-  from { transform: scaleY(0.15); opacity: 0.3; }
-  to   { transform: scaleY(1);    opacity: 0.9; }
+  from { transform: scaleY(0.12); opacity: 0.25; }
+  to   { transform: scaleY(1);    opacity: 0.85; }
 }
 
 .audio-range {
@@ -231,8 +187,8 @@ html, body {
 }
 .audio-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px; height: 10px;
-  background: #f0f0f0;
+  width: 8px; height: 8px;
+  background: #efefef;
   border-radius: 50%;
 }
 
@@ -240,48 +196,34 @@ html, body {
    SCROLLBAR
 ════════════════════════════════════════ */
 ::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: #080808; }
-::-webkit-scrollbar-thumb { background: #222222; border-radius: 1px; }
-::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #1e1e1e; }
 
 /* ════════════════════════════════════════
-   PAGE TRANSITION
+   PAGE ENTER
 ════════════════════════════════════════ */
 .page-enter {
   animation: pageIn 0.2s ease forwards;
 }
 @keyframes pageIn {
-  from { opacity: 0; transform: translateY(5px); }
+  from { opacity: 0; transform: translateY(4px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ════════════════════════════════════════
-   CURSOR BLINK
+   CURSOR
 ════════════════════════════════════════ */
 .cursor::after {
   content: '▋';
-  color: #f0f0f0;
+  color: #efefef;
   animation: blink 1s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 /* ════════════════════════════════════════
-   VOLTAGE GRID (hero bg)
+   DOT PULSE — soft voltage indicator
 ════════════════════════════════════════ */
-.v-grid {
-  background-image:
-    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-/* ════════════════════════════════════════
-   FLICKER (only on hero title)
-════════════════════════════════════════ */
-@keyframes flicker {
-  0%,93%,100% { opacity: 1; }
-  94%          { opacity: 0.82; }
-  95%          { opacity: 1; }
-  97%          { opacity: 0.88; }
-  98%          { opacity: 1; }
+@keyframes dot {
+  0%,100% { opacity: 0.2; }
+  50%     { opacity: 0.7; }
 }

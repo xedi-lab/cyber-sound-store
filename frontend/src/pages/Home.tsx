@@ -1,30 +1,22 @@
 import { useNavigate } from 'react-router-dom'
-import { GlitchText } from '../components/GlitchText'
 import { SERVICES } from '../data/services'
 
 const STATS = [
-  { value: '500+', label: 'ТРЕКОВ СВЕДЕНО' },
-  { value: '3+',   label: 'ГОДА ОПЫТА' },
-  { value: '24Ч',  label: 'ЭКСПРЕСС' },
+  { value: '500+', label: 'треков сведено' },
+  { value: '3+',   label: 'года опыта' },
+  { value: '24ч',  label: 'экспресс' },
 ]
 
-/* Oscilloscope — voltage decoration */
-function OsciLine() {
+/* Soft oscilloscope — voltage in background */
+function OsciTrace() {
   return (
-    <div className="flex items-end gap-px h-5 overflow-hidden">
-      {Array.from({ length: 48 }).map((_, i) => {
-        const y = 50 + Math.sin(i * 0.55) * 38 + Math.sin(i * 1.1) * 14
+    <div className="flex items-end gap-px h-4 overflow-hidden">
+      {Array.from({ length: 56 }).map((_, i) => {
+        const y = 50 + Math.sin(i * 0.5) * 36 + Math.sin(i * 1.05) * 13
         return (
           <div
             key={i}
-            className="flex-shrink-0"
-            style={{
-              width: 2,
-              marginRight: 1,
-              height: `${y}%`,
-              background: '#f0f0f0',
-              opacity: 0.15,
-            }}
+            style={{ width: 2, marginRight: 1, height: `${y}%`, background: '#efefef', opacity: 0.06 }}
           />
         )
       })}
@@ -39,99 +31,82 @@ export function HomePage() {
     <div className="page-enter pb-16 min-h-screen">
 
       {/* ── Hero ── */}
-      <div className="relative px-4 pt-12 pb-10 text-center overflow-hidden">
-        <div className="absolute inset-0 v-grid" />
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.025) 0%, transparent 65%)' }}
-        />
-
-        <div className="relative z-10">
-          <div className="label mb-6">@rizzie044 · HIGH VOLTAGE AUDIO</div>
-
-          <GlitchText
-            text="CYBER"
-            tag="div"
-            scramble
-            className="heading-xl text-5xl mb-0"
+      <div className="px-5 pt-14 pb-10">
+        <div className="t-label mb-5">
+          <span
+            className="inline-block w-1.5 h-1.5 rounded-full bg-v-white mr-2 align-middle"
+            style={{ animation: 'dot 3s ease-in-out infinite', opacity: 0.4 }}
           />
-          <div className="heading-xl text-5xl">SOUND</div>
-          <div className="heading-xl text-5xl mb-4">STORE</div>
-
-          <OsciLine />
-
-          <div className="label mt-4 mb-8">СВЕДЕНИЕ · МАСТЕРИНГ · САУНД ДИЗАЙН</div>
-
-          <button onClick={() => navigate('/services')} className="btn btn-primary px-10">
-            УСЛУГИ
-          </button>
+          @rizzie044
         </div>
+
+        <div className="t-title text-[32px] leading-tight mb-1">CYBER</div>
+        <div className="t-title text-[32px] leading-tight mb-1">SOUND</div>
+        <div className="t-title text-[32px] leading-tight mb-6">STORE</div>
+
+        <OsciTrace />
+
+        <div className="t-label mt-4 mb-8">сведение · мастеринг · саунд дизайн</div>
+
+        <button onClick={() => navigate('/services')} className="btn btn-primary px-8">
+          услуги
+        </button>
       </div>
 
       {/* ── Stats ── */}
-      <div className="grid grid-cols-3 border-t border-b border-v-border mx-4 mb-10">
+      <div className="flex border-t border-b border-v-border mx-5 mb-10">
         {STATS.map((s, i) => (
           <div
             key={s.label}
-            className={`py-4 text-center ${i < 2 ? 'border-r border-v-border' : ''}`}
+            className={`flex-1 py-4 text-center ${i < 2 ? 'border-r border-v-border' : ''}`}
           >
-            <div className="price text-xl">{s.value}</div>
-            <div className="label mt-1">{s.label}</div>
+            <div className="t-price text-[18px]">{s.value}</div>
+            <div className="t-label mt-1">{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* ── Services ── */}
-      <div className="px-4 mb-10">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="label">УСЛУГИ</span>
-          <div className="flex-1 divider" />
-        </div>
-
-        <div className="space-y-2">
+      <div className="px-5 mb-10">
+        <div className="t-label mb-4">услуги</div>
+        <div className="space-y-px">
           {SERVICES.map((s, i) => (
             <button
               key={s.id}
               onClick={() => navigate(`/services/${s.slug}`)}
-              className="card w-full p-4 flex items-center gap-4 group"
+              className="w-full flex items-center gap-4 py-3.5 border-b border-v-border group transition-colors hover:bg-v-surface"
             >
-              <div className="label w-5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</div>
-              <div className="text-base flex-shrink-0">{s.icon}</div>
-              <div className="flex-1 text-left min-w-0">
-                <div className="heading-sm">{s.title}</div>
-                <div className="label mt-0.5">{s.subtitle}</div>
+              <div className="t-label w-5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</div>
+              <div className="flex-1 text-left">
+                <div className="t-heading">{s.title}</div>
+                <div className="t-label mt-0.5">{s.subtitle}</div>
               </div>
-              <div className="price text-sm flex-shrink-0">{s.price.toLocaleString('ru-RU')} ₽</div>
-              <div className="label flex-shrink-0 group-hover:text-v-white transition-colors">→</div>
+              <div className="t-price text-[15px] flex-shrink-0">{s.price.toLocaleString('ru-RU')} ₽</div>
+              <div className="t-label flex-shrink-0 group-hover:text-v-white transition-colors">→</div>
             </button>
           ))}
         </div>
       </div>
 
       {/* ── About ── */}
-      <div className="mx-4 card p-5">
-        <div className="label mb-3">О МАСТЕРЕ</div>
-        <p className="body-text mb-4">
-          Привет, я{' '}
-          <span className="text-v-white">@rizzie044</span>
-          {' '}— звукоинженер в электронной музыке.
-          Сведение и мастеринг с 2023 года. Работаю с электроникой, хип-хопом,
-          экспериментальными жанрами.
+      <div className="mx-5 mb-5">
+        <div className="t-label mb-3">о мастере</div>
+        <p className="t-body mb-4">
+          Привет, я <span className="text-v-white">@rizzie044</span> — звукоинженер.
+          Сведение и мастеринг с 2023 года. Работаю с электроникой,
+          хип-хопом, экспериментальными жанрами.
         </p>
         <div className="flex gap-2">
           <a
             href="https://t.me/rizzie044"
             target="_blank"
             rel="noreferrer"
-            className="btn btn-outline flex-1 text-center text-[10px]"
+            className="btn btn-outline flex-1 text-center"
           >
-            TG: @rizzie044
+            @rizzie044
           </a>
-          <button
-            onClick={() => navigate('/portfolio')}
-            className="btn btn-outline flex-1 text-[10px]"
-          >
-            ПОРТФОЛИО →
+          <button onClick={() => navigate('/portfolio')} className="btn btn-outline flex-1">
+            портфолио →
           </button>
         </div>
       </div>

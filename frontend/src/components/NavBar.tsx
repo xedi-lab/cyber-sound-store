@@ -21,17 +21,17 @@ export function NavBar() {
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-              className={`flex-1 flex flex-col items-center justify-center gap-0.5 transition-all
+              className={`flex-1 flex flex-col items-center justify-center gap-1 transition-colors
                 font-mono text-[9px] tracking-widest uppercase relative
                 ${active ? 'text-v-white' : 'text-v-gray3 hover:text-v-gray2'}`}
             >
               {active && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-px bg-v-white opacity-60" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-px bg-v-white opacity-40" />
               )}
-              <span className={`text-sm leading-none ${active ? 'opacity-100' : 'opacity-40'}`}>
+              <span className={`text-sm leading-none ${active ? 'opacity-90' : 'opacity-25'}`}>
                 {item.icon}
               </span>
-              <span className={active ? 'text-v-white' : ''}>{item.label}</span>
+              <span>{item.label}</span>
             </button>
           )
         })}
