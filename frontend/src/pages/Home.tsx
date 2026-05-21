@@ -113,7 +113,7 @@ export function HomePage() {
 
       {/* ── About ── */}
       <div className="mx-5 mb-5">
-        <div className="t-label mb-3">о мастере</div>
+        <div className="t-label mb-3">обо мне</div>
         <p className="t-body mb-4">
           Я <span className="text-v-white">Shiny Ruby</span> — mix engineer и self-prod
           с аудиторией 130к+ слушателей на Яндексе.
