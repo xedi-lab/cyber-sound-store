@@ -74,7 +74,7 @@ export function HomePage() {
             <button
               key={s.id}
               onClick={() => navigate(`/services/${s.slug}`)}
-              className="w-full flex items-center gap-4 py-3.5 border-b border-v-border group transition-colors hover:bg-v-surface"
+              className="w-full flex items-center gap-4 py-3.5 border-b border-v-border group transition-colors hover:bg-v-surface2"
             >
               <div className="t-label w-5 flex-shrink-0">{String(i + 1).padStart(2, '0')}</div>
               <div className="flex-1 text-left">

@@ -5,15 +5,15 @@ export default {
     extend: {
       colors: {
         v: {
-          bg:       '#0a0a0a',
-          surface:  '#0e0e0e',
-          surface2: '#131313',
-          border:   '#181818',
-          border2:  '#222222',
-          white:    '#efefef',
-          gray1:    '#999999',
-          gray2:    '#555555',
-          gray3:    '#2a2a2a',
+          bg:       '#111111',
+          surface:  '#1a1a1a',
+          surface2: '#222222',
+          border:   '#2a2a2a',
+          border2:  '#363636',
+          white:    '#f0f0f0',
+          gray1:    '#bbbbbb',
+          gray2:    '#888888',
+          gray3:    '#555555',
         },
       },
       fontFamily: {

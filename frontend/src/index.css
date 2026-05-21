@@ -7,8 +7,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  background: #0a0a0a;
-  color: #555555;
+  background: #111111;
+  color: #888888;
   font-family: 'JetBrains Mono', monospace;
   overflow-x: hidden;
   min-height: 100vh;
@@ -21,14 +21,14 @@ html, body {
    CARDS
 ════════════════════════════════════════ */
 .card {
-  background: #0e0e0e;
-  border: 1px solid #181818;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
   position: relative;
   transition: border-color 0.25s, background 0.25s;
 }
 .card:hover {
-  border-color: #222222;
-  background: #111111;
+  border-color: #3a3a3a;
+  background: #1e1e1e;
 }
 
 /* ════════════════════════════════════════
@@ -95,14 +95,14 @@ html, body {
 .t-label {
   font-size: 10px;
   font-weight: 400;
-  color: #444444;
+  color: #777777;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 .t-body {
   font-size: 12px;
   line-height: 1.8;
-  color: #555555;
+  color: #888888;
 }
 .t-price {
   font-weight: 700;
@@ -112,7 +112,7 @@ html, body {
 }
 .t-price-old {
   font-size: 10px;
-  color: #2e2e2e;
+  color: #484848;
   text-decoration: line-through;
 }
 
@@ -126,9 +126,9 @@ html, body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   padding: 3px 7px;
-  background: #111111;
-  border: 1px solid #1e1e1e;
-  color: #444444;
+  background: #1e1e1e;
+  border: 1px solid #2e2e2e;
+  color: #777777;
 }
 .tag-hi {
   background: #efefef;
@@ -142,7 +142,7 @@ html, body {
 ════════════════════════════════════════ */
 .divider {
   height: 1px;
-  background: #141414;
+  background: #2a2a2a;
 }
 
 /* ════════════════════════════════════════
@@ -150,17 +150,17 @@ html, body {
 ════════════════════════════════════════ */
 .input {
   width: 100%;
-  background: #0c0c0c;
-  border: 1px solid #181818;
-  color: #efefef;
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  color: #f0f0f0;
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   padding: 12px 14px;
   outline: none;
   transition: border-color 0.18s;
 }
-.input::placeholder { color: #282828; }
-.input:focus { border-color: #303030; }
+.input::placeholder { color: #444444; }
+.input:focus { border-color: #444444; }
 
 /* ════════════════════════════════════════
    AUDIO / VU
