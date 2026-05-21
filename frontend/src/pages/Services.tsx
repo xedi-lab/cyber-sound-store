@@ -11,18 +11,16 @@ export function ServicesPage() {
       <div className="px-4 pt-8">
 
         <div className="mb-6">
-          <div className="font-mono text-[9px] text-cyber-text-dim tracking-widest mb-1">
-            ⚡ root/services
+          <div className="label mb-1">
+            <span className="bolt-icon mr-1">⚡</span>root/services
           </div>
           <GlitchText
             text="SERVICES"
             tag="h1"
             scramble
-            className="font-display font-black text-3xl text-cyber-red neon-text tracking-wider"
+            className="font-display font-black text-3xl text-cyber-white tracking-wider"
           />
-          <div className="font-mono text-[10px] text-cyber-text-dim mt-1">
-            ВЫБЕРИ УСЛУГУ
-          </div>
+          <div className="label mt-1">ВЫБЕРИ УСЛУГУ</div>
         </div>
 
         <div className="space-y-3">
@@ -30,27 +28,22 @@ export function ServicesPage() {
             <button
               key={service.id}
               onClick={() => navigate(`/services/${service.slug}`)}
-              className="electric-card w-full p-4 text-left group relative sparks"
+              className="card card-corners w-full p-4 text-left group"
             >
-              <div className="absolute top-3 right-3 font-mono text-[10px] text-cyber-text-dim">
-                [{String(i + 1).padStart(2, '0')}]
+              <div className="flex items-start justify-between mb-3">
+                <div className="tag">{service.tag}</div>
+                <div className="label">[{String(i + 1).padStart(2, '0')}]</div>
               </div>
-
-              <div className="badge-red inline-block mb-2 text-[9px]">{service.tag}</div>
 
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl">{service.icon}</span>
                 <div>
-                  <div className="font-display font-bold text-cyber-red text-sm tracking-wider">
-                    {service.title}
-                  </div>
-                  <div className="font-mono text-cyber-text-dim text-[10px]">{service.subtitle}</div>
+                  <div className="heading-sm">{service.title}</div>
+                  <div className="label mt-0.5">{service.subtitle}</div>
                 </div>
               </div>
 
-              <p className="font-mono text-[11px] text-cyber-text-dim leading-relaxed mb-3 line-clamp-2">
-                {service.description}
-              </p>
+              <p className="body-text mb-3 line-clamp-2">{service.description}</p>
 
               <div className="flex items-end justify-between">
                 <div>
@@ -59,22 +52,22 @@ export function ServicesPage() {
                       {service.oldPrice.toLocaleString('ru-RU')} ₽
                     </div>
                   )}
-                  <div className="font-display font-bold text-cyber-red text-lg">
+                  <div className="font-display font-bold text-xl neon">
                     {service.price.toLocaleString('ru-RU')} ₽
                   </div>
                 </div>
                 {service.slots && (
-                  <div className="badge-red text-[9px]">{service.slots} SLOTS LEFT</div>
+                  <div className="tag">{service.slots} SLOTS LEFT</div>
                 )}
               </div>
-
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyber-spark to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
             </button>
           ))}
         </div>
 
-        <div className="mt-6 font-mono text-[9px] text-cyber-text-dim text-center tracking-widest">
-          ⚡ ВОПРОСЫ? ПИСАТЬ В ЛС <span className="text-cyber-red">@rizzie044</span> ⚡
+        <div className="mt-6 label text-center">
+          <span className="bolt-icon mr-1">⚡</span>
+          ВОПРОСЫ? ПИСАТЬ В ЛС <span className="accent">@rizzie044</span>
+          <span className="bolt-icon ml-1">⚡</span>
         </div>
       </div>
     </div>
@@ -89,7 +82,7 @@ export function ServiceDetailPage() {
   if (!service) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="font-mono text-cyber-red text-sm">ERROR_404: SERVICE_NOT_FOUND</div>
+        <div className="accent font-mono text-sm">ERROR_404: SERVICE_NOT_FOUND</div>
       </div>
     )
   }
@@ -100,29 +93,27 @@ export function ServiceDetailPage() {
 
         <button
           onClick={() => navigate('/services')}
-          className="font-mono text-[10px] text-cyber-text-dim hover:text-cyber-red mb-4 flex items-center gap-1 transition-colors"
+          className="label hover:text-cyber-red mb-4 flex items-center gap-1 transition-colors"
         >
           ← НАЗАД
         </button>
 
         <div className="mb-6">
-          <div className="badge-red inline-block mb-2 text-[9px]">{service.tag}</div>
+          <div className="tag mb-2">{service.tag}</div>
           <div className="flex items-center gap-3 mb-1">
             <span className="text-3xl">{service.icon}</span>
             <GlitchText
               text={service.title}
               tag="h1"
               scramble
-              className="font-display font-bold text-cyber-red text-xl tracking-wider"
+              className="font-display font-bold text-xl text-cyber-white tracking-wider"
             />
           </div>
-          <div className="font-mono text-cyber-text-dim text-[10px] tracking-widest">
-            {service.subtitle}
-          </div>
+          <div className="label">{service.subtitle}</div>
         </div>
 
         {/* Price card */}
-        <div className="electric-card p-4 mb-6 bolt-corners">
+        <div className="card card-corners p-4 mb-6">
           <div className="flex items-center justify-between">
             <div>
               {service.oldPrice && (
@@ -130,32 +121,31 @@ export function ServiceDetailPage() {
                   {service.oldPrice.toLocaleString('ru-RU')} ₽
                 </div>
               )}
-              <div className="font-display font-bold text-cyber-red text-2xl neon-text-dim">
+              <div className="font-display font-bold text-2xl neon">
                 {service.price.toLocaleString('ru-RU')} ₽
               </div>
             </div>
             {service.slots && (
               <div className="text-right">
-                <div className="badge-red text-[9px]">{service.slots} SLOTS</div>
-                <div className="font-mono text-[9px] text-cyber-text-dim mt-1">МЕСТ ОСТАЛОСЬ</div>
+                <div className="tag">{service.slots} SLOTS</div>
+                <div className="label mt-1">МЕСТ ОСТАЛОСЬ</div>
               </div>
             )}
           </div>
         </div>
 
         <div className="mb-6">
-          <div className="font-mono text-[10px] text-cyber-text-dim tracking-widest mb-2">
-            ⚡ ОПИСАНИЕ
+          <div className="label mb-2">
+            <span className="bolt-icon mr-1">⚡</span>ОПИСАНИЕ
           </div>
-          <p className="font-mono text-[12px] text-cyber-text-dim leading-relaxed">
-            {service.description}
-          </p>
+          <p className="body-text">{service.description}</p>
         </div>
 
         {service.tariffs && (
           <div className="mb-6">
-            <div className="font-mono text-[10px] text-cyber-text-dim tracking-widest mb-3">
-              ⚡ ТАРИФЫ [{service.tariffs.length}]
+            <div className="label mb-3">
+              <span className="bolt-icon mr-1">⚡</span>
+              ТАРИФЫ [{service.tariffs.length}]
             </div>
             <div className="space-y-3">
               {service.tariffs.map((t, i) => (
@@ -165,16 +155,17 @@ export function ServiceDetailPage() {
           </div>
         )}
 
-        {service.id === 'course'         && <CourseIncludes />}
-        {service.id === 'month_engineer' && <MonthEngineerIncludes />}
-        {service.id === 'private_channel'&& <PrivateChannelInfo />}
+        {service.id === 'course'          && <CourseIncludes />}
+        {service.id === 'month_engineer'  && <MonthEngineerIncludes />}
+        {service.id === 'private_channel' && <PrivateChannelInfo />}
 
         {!service.tariffs && (
           <button
             onClick={() => navigate(`/order?service=${service.id}`)}
-            className="cyber-btn cyber-btn-primary w-full py-3 text-xs tracking-widest"
+            className="btn btn-primary w-full"
           >
-            ⚡ ЗАКАЗАТЬ → {service.title}
+            <span className="bolt-icon mr-2">⚡</span>
+            ЗАКАЗАТЬ → {service.title}
           </button>
         )}
       </div>
@@ -184,10 +175,10 @@ export function ServiceDetailPage() {
 
 function IncludeList({ items }: { items: string[] }) {
   return (
-    <div className="electric-card p-4 space-y-2">
+    <div className="card p-4 space-y-2">
       {items.map((item, i) => (
-        <div key={i} className="flex items-start gap-2 font-mono text-[11px] text-cyber-text-dim">
-          <span className="text-cyber-spark flex-shrink-0">⚡</span>
+        <div key={i} className="flex items-start gap-2 body-text">
+          <span className="accent-spark flex-shrink-0">⚡</span>
           <span>{item}</span>
         </div>
       ))}
@@ -198,14 +189,16 @@ function IncludeList({ items }: { items: string[] }) {
 function CourseIncludes() {
   return (
     <div className="mb-6">
-      <div className="font-mono text-[10px] text-cyber-text-dim tracking-widest mb-3">
-        ⚡ ЧТО ВКЛЮЧЕНО
+      <div className="label mb-3">
+        <span className="bolt-icon mr-1">⚡</span>ЧТО ВКЛЮЧЕНО
       </div>
       <IncludeList items={COURSE_INCLUDES} />
-      <div className="mt-3 electric-card p-3">
-        <div className="font-mono text-[10px] text-cyber-text-dim">⚡ ЦЕНА</div>
-        <div className="font-display font-bold text-cyber-red text-xl mt-1">12 000 ₽</div>
-        <div className="font-mono text-[9px] text-cyber-text-dim">(СКОРО ВЫРАСТЕТ)</div>
+      <div className="mt-3 card p-3">
+        <div className="label">
+          <span className="bolt-icon mr-1">⚡</span>ЦЕНА
+        </div>
+        <div className="font-display font-bold text-xl neon mt-1">12 000 ₽</div>
+        <div className="label mt-0.5">(СКОРО ВЫРАСТЕТ)</div>
       </div>
     </div>
   )
@@ -214,8 +207,8 @@ function CourseIncludes() {
 function MonthEngineerIncludes() {
   return (
     <div className="mb-6">
-      <div className="font-mono text-[10px] text-cyber-text-dim tracking-widest mb-3">
-        ⚡ КАК ЭТО РАБОТАЕТ
+      <div className="label mb-3">
+        <span className="bolt-icon mr-1">⚡</span>КАК ЭТО РАБОТАЕТ
       </div>
       <IncludeList items={MONTH_ENGINEER_INCLUDES} />
     </div>
@@ -225,16 +218,16 @@ function MonthEngineerIncludes() {
 function PrivateChannelInfo() {
   return (
     <div className="mb-6">
-      <div className="font-mono text-[10px] text-cyber-text-dim tracking-widest mb-3">
-        ⚡ ЧТО ТЫ ПОЛУЧИШЬ
+      <div className="label mb-3">
+        <span className="bolt-icon mr-1">⚡</span>ЧТО ТЫ ПОЛУЧИШЬ
       </div>
       <IncludeList items={[
         'Доступ к закрытому Telegram-каналу',
         'Пресеты, проекты, референсы и материалы',
         'Регулярные обновления контента',
       ]} />
-      <div className="mt-3 electric-card p-3">
-        <div className="badge-red text-[9px]">ОСТАЛОСЬ 3 МЕСТА</div>
+      <div className="mt-3 card p-3">
+        <div className="tag">ОСТАЛОСЬ 3 МЕСТА</div>
       </div>
     </div>
   )
