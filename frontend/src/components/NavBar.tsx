@@ -12,7 +12,7 @@ export function NavBar() {
   const navigate = useNavigate()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-cyber-black border-t border-cyber-border">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-v-bg border-t border-v-border">
       <div className="flex h-14">
         {NAV.map(item => {
           const active = pathname === item.path ||
@@ -22,19 +22,16 @@ export function NavBar() {
               key={item.path}
               onClick={() => navigate(item.path)}
               className={`flex-1 flex flex-col items-center justify-center gap-0.5 transition-all
-                font-mono text-[9px] tracking-widest uppercase
-                ${active
-                  ? 'text-cyber-red'
-                  : 'text-cyber-text-3 hover:text-cyber-text-2'
-                }`}
+                font-mono text-[9px] tracking-widest uppercase relative
+                ${active ? 'text-v-white' : 'text-v-gray3 hover:text-v-gray2'}`}
             >
               {active && (
-                <div className="absolute top-0 w-8 h-px bg-cyber-red" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-px bg-v-white opacity-60" />
               )}
-              <span className={`text-sm leading-none ${active ? 'drop-shadow-[0_0_6px_#ff2020]' : ''}`}>
+              <span className={`text-sm leading-none ${active ? 'opacity-100' : 'opacity-40'}`}>
                 {item.icon}
               </span>
-              <span>{item.label}</span>
+              <span className={active ? 'text-v-white' : ''}>{item.label}</span>
             </button>
           )
         })}

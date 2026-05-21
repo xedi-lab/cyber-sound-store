@@ -11,24 +11,17 @@ export function ServicesPage() {
       <div className="px-4 pt-8">
 
         <div className="mb-6">
-          <div className="label mb-1">
-            <span className="bolt-icon mr-1">⚡</span>root/services
-          </div>
-          <GlitchText
-            text="SERVICES"
-            tag="h1"
-            scramble
-            className="font-display font-black text-3xl text-cyber-white tracking-wider"
-          />
+          <div className="label mb-2">root / services</div>
+          <div className="heading-lg text-2xl">SERVICES</div>
           <div className="label mt-1">ВЫБЕРИ УСЛУГУ</div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           {SERVICES.map((service, i) => (
             <button
               key={service.id}
               onClick={() => navigate(`/services/${service.slug}`)}
-              className="card card-corners w-full p-4 text-left group"
+              className="card w-full p-4 text-left group"
             >
               <div className="flex items-start justify-between mb-3">
                 <div className="tag">{service.tag}</div>
@@ -36,38 +29,33 @@ export function ServicesPage() {
               </div>
 
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl">{service.icon}</span>
+                <span className="text-xl">{service.icon}</span>
                 <div>
                   <div className="heading-sm">{service.title}</div>
                   <div className="label mt-0.5">{service.subtitle}</div>
                 </div>
               </div>
 
-              <p className="body-text mb-3 line-clamp-2">{service.description}</p>
+              <p className="body-text mb-4 line-clamp-2">{service.description}</p>
 
               <div className="flex items-end justify-between">
                 <div>
                   {service.oldPrice && (
-                    <div className="price-old font-mono text-[10px]">
-                      {service.oldPrice.toLocaleString('ru-RU')} ₽
-                    </div>
+                    <div className="price-old">{service.oldPrice.toLocaleString('ru-RU')} ₽</div>
                   )}
-                  <div className="font-display font-bold text-xl neon">
-                    {service.price.toLocaleString('ru-RU')} ₽
-                  </div>
+                  <div className="price text-xl">{service.price.toLocaleString('ru-RU')} ₽</div>
                 </div>
-                {service.slots && (
-                  <div className="tag">{service.slots} SLOTS LEFT</div>
-                )}
+                <div className="flex items-center gap-3">
+                  {service.slots && <div className="tag tag-white">{service.slots} SLOTS</div>}
+                  <div className="label group-hover:text-v-white transition-colors">→</div>
+                </div>
               </div>
             </button>
           ))}
         </div>
 
-        <div className="mt-6 label text-center">
-          <span className="bolt-icon mr-1">⚡</span>
-          ВОПРОСЫ? ПИСАТЬ В ЛС <span className="accent">@rizzie044</span>
-          <span className="bolt-icon ml-1">⚡</span>
+        <div className="mt-8 label text-center">
+          ВОПРОСЫ? <span className="text-v-white">@rizzie044</span>
         </div>
       </div>
     </div>
@@ -82,7 +70,7 @@ export function ServiceDetailPage() {
   if (!service) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="accent font-mono text-sm">ERROR_404: SERVICE_NOT_FOUND</div>
+        <div className="label">ERROR 404 — SERVICE NOT FOUND</div>
       </div>
     )
   }
@@ -93,41 +81,37 @@ export function ServiceDetailPage() {
 
         <button
           onClick={() => navigate('/services')}
-          className="label hover:text-cyber-red mb-4 flex items-center gap-1 transition-colors"
+          className="label hover:text-v-white mb-5 flex items-center gap-1 transition-colors"
         >
           ← НАЗАД
         </button>
 
         <div className="mb-6">
-          <div className="tag mb-2">{service.tag}</div>
+          <div className="tag mb-3">{service.tag}</div>
           <div className="flex items-center gap-3 mb-1">
-            <span className="text-3xl">{service.icon}</span>
+            <span className="text-2xl">{service.icon}</span>
             <GlitchText
               text={service.title}
               tag="h1"
               scramble
-              className="font-display font-bold text-xl text-cyber-white tracking-wider"
+              className="heading-lg text-xl"
             />
           </div>
           <div className="label">{service.subtitle}</div>
         </div>
 
-        {/* Price card */}
-        <div className="card card-corners p-4 mb-6">
+        {/* Price */}
+        <div className="card p-4 mb-6">
           <div className="flex items-center justify-between">
             <div>
               {service.oldPrice && (
-                <div className="price-old font-mono text-xs">
-                  {service.oldPrice.toLocaleString('ru-RU')} ₽
-                </div>
+                <div className="price-old mb-0.5">{service.oldPrice.toLocaleString('ru-RU')} ₽</div>
               )}
-              <div className="font-display font-bold text-2xl neon">
-                {service.price.toLocaleString('ru-RU')} ₽
-              </div>
+              <div className="price text-2xl">{service.price.toLocaleString('ru-RU')} ₽</div>
             </div>
             {service.slots && (
               <div className="text-right">
-                <div className="tag">{service.slots} SLOTS</div>
+                <div className="tag tag-white">{service.slots} SLOTS</div>
                 <div className="label mt-1">МЕСТ ОСТАЛОСЬ</div>
               </div>
             )}
@@ -135,18 +119,13 @@ export function ServiceDetailPage() {
         </div>
 
         <div className="mb-6">
-          <div className="label mb-2">
-            <span className="bolt-icon mr-1">⚡</span>ОПИСАНИЕ
-          </div>
+          <div className="label mb-2">ОПИСАНИЕ</div>
           <p className="body-text">{service.description}</p>
         </div>
 
         {service.tariffs && (
           <div className="mb-6">
-            <div className="label mb-3">
-              <span className="bolt-icon mr-1">⚡</span>
-              ТАРИФЫ [{service.tariffs.length}]
-            </div>
+            <div className="label mb-3">ТАРИФЫ [{service.tariffs.length}]</div>
             <div className="space-y-3">
               {service.tariffs.map((t, i) => (
                 <TariffCard key={t.id} tariff={t} index={i} />
@@ -164,8 +143,7 @@ export function ServiceDetailPage() {
             onClick={() => navigate(`/order?service=${service.id}`)}
             className="btn btn-primary w-full"
           >
-            <span className="bolt-icon mr-2">⚡</span>
-            ЗАКАЗАТЬ → {service.title}
+            ЗАКАЗАТЬ — {service.title}
           </button>
         )}
       </div>
@@ -177,8 +155,8 @@ function IncludeList({ items }: { items: string[] }) {
   return (
     <div className="card p-4 space-y-2">
       {items.map((item, i) => (
-        <div key={i} className="flex items-start gap-2 body-text">
-          <span className="accent-spark flex-shrink-0">⚡</span>
+        <div key={i} className="flex items-start gap-3 body-text">
+          <span className="text-v-white flex-shrink-0 mt-px">—</span>
           <span>{item}</span>
         </div>
       ))}
@@ -189,15 +167,11 @@ function IncludeList({ items }: { items: string[] }) {
 function CourseIncludes() {
   return (
     <div className="mb-6">
-      <div className="label mb-3">
-        <span className="bolt-icon mr-1">⚡</span>ЧТО ВКЛЮЧЕНО
-      </div>
+      <div className="label mb-3">ЧТО ВКЛЮЧЕНО</div>
       <IncludeList items={COURSE_INCLUDES} />
       <div className="mt-3 card p-3">
-        <div className="label">
-          <span className="bolt-icon mr-1">⚡</span>ЦЕНА
-        </div>
-        <div className="font-display font-bold text-xl neon mt-1">12 000 ₽</div>
+        <div className="label mb-1">ЦЕНА</div>
+        <div className="price text-xl">12 000 ₽</div>
         <div className="label mt-0.5">(СКОРО ВЫРАСТЕТ)</div>
       </div>
     </div>
@@ -207,9 +181,7 @@ function CourseIncludes() {
 function MonthEngineerIncludes() {
   return (
     <div className="mb-6">
-      <div className="label mb-3">
-        <span className="bolt-icon mr-1">⚡</span>КАК ЭТО РАБОТАЕТ
-      </div>
+      <div className="label mb-3">КАК ЭТО РАБОТАЕТ</div>
       <IncludeList items={MONTH_ENGINEER_INCLUDES} />
     </div>
   )
@@ -218,16 +190,14 @@ function MonthEngineerIncludes() {
 function PrivateChannelInfo() {
   return (
     <div className="mb-6">
-      <div className="label mb-3">
-        <span className="bolt-icon mr-1">⚡</span>ЧТО ТЫ ПОЛУЧИШЬ
-      </div>
+      <div className="label mb-3">ЧТО ТЫ ПОЛУЧИШЬ</div>
       <IncludeList items={[
         'Доступ к закрытому Telegram-каналу',
         'Пресеты, проекты, референсы и материалы',
         'Регулярные обновления контента',
       ]} />
       <div className="mt-3 card p-3">
-        <div className="tag">ОСТАЛОСЬ 3 МЕСТА</div>
+        <div className="tag tag-white">ОСТАЛОСЬ 3 МЕСТА</div>
       </div>
     </div>
   )

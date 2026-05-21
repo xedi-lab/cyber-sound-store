@@ -7,8 +7,8 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
-  background: #070709;
-  color: #c8c8d0;
+  background: #080808;
+  color: #aaaaaa;
   font-family: 'JetBrains Mono', monospace;
   overflow-x: hidden;
   min-height: 100vh;
@@ -17,126 +17,29 @@ html, body {
 
 #root { min-height: 100vh; }
 
-/* ── Subtle scanline ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  background: repeating-linear-gradient(
-    0deg, transparent, transparent 3px,
-    rgba(0,0,0,0.06) 3px, rgba(0,0,0,0.06) 4px
-  );
-  pointer-events: none;
-  z-index: 9999;
-}
-
-/* ── Moving scanline ── */
-body::after {
-  content: '';
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,32,32,0.2), transparent);
-  animation: scanline 6s linear infinite;
-  pointer-events: none;
-  z-index: 9998;
-}
-
-@keyframes scanline { 0%{top:-2px} 100%{top:100vh} }
-
-/* ════════════════════════════════════════
-   GLITCH — только на заголовках
-════════════════════════════════════════ */
-.glitch {
-  position: relative;
-  animation: flicker 6s infinite;
-}
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
-}
-.glitch::before {
-  color: #ff6600;
-  clip-path: polygon(0 20%, 100% 20%, 100% 45%, 0 45%);
-  animation: g-top 4s infinite;
-}
-.glitch::after {
-  color: #cc0000;
-  clip-path: polygon(0 60%, 100% 60%, 100% 80%, 0 80%);
-  animation: g-bot 4s infinite;
-}
-@keyframes g-top {
-  0%,88%,100%{transform:translate(0);opacity:0}
-  89%{transform:translate(-4px,0);opacity:0.8}
-  90%{transform:translate(3px,0);opacity:0.5}
-  91%{transform:translate(0);opacity:0}
-}
-@keyframes g-bot {
-  0%,88%,100%{transform:translate(0);opacity:0}
-  89%{transform:translate(3px,0);opacity:0.7}
-  90%{transform:translate(-2px,0);opacity:0.4}
-  91%{transform:translate(0);opacity:0}
-}
-@keyframes flicker {
-  0%,95%,100%{opacity:1}
-  96%{opacity:0.8}
-  97%{opacity:1}
-  98%{opacity:0.6}
-  99%{opacity:1}
-}
-
 /* ════════════════════════════════════════
    CARDS
 ════════════════════════════════════════ */
 .card {
-  background: #0f0f12;
-  border: 1px solid #1e1e24;
-  border-radius: 2px;
+  background: #101010;
+  border: 1px solid #1e1e1e;
+  border-radius: 1px;
   position: relative;
-  transition: border-color 0.25s, box-shadow 0.25s;
+  transition: border-color 0.2s;
 }
-.card:hover {
-  border-color: #ff202033;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 1px #ff202033;
-}
+.card:hover { border-color: #2a2a2a; }
 
-/* Red top accent line on hover */
+/* Thin white top accent on hover */
 .card::before {
   content: '';
   position: absolute;
-  top: -1px; left: 20%; right: 20%;
+  top: -1px; left: 30%; right: 30%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ff2020, transparent);
+  background: rgba(255,255,255,0.25);
   opacity: 0;
   transition: opacity 0.3s, left 0.3s, right 0.3s;
 }
-.card:hover::before {
-  opacity: 1;
-  left: 10%; right: 10%;
-}
-
-/* Corner marks */
-.card-corners::after {
-  content: '';
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 10px; height: 10px;
-  border-bottom: 1px solid #ff202044;
-  border-right: 1px solid #ff202044;
-}
-.card-corners::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 10px; height: 10px;
-  border-top: 1px solid #ff202044;
-  border-left: 1px solid #ff202044;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 1;
-}
-.card-corners:hover::before { opacity: 1; }
+.card:hover::before { opacity: 1; left: 15%; right: 15%; }
 
 /* ════════════════════════════════════════
    BUTTONS
@@ -150,47 +53,45 @@ body::after {
   font-weight: 500;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 11px 22px;
-  border-radius: 2px;
+  padding: 12px 24px;
+  border-radius: 1px;
   cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
+  transition: all 0.18s;
 }
 
 .btn-primary {
-  background: #ff2020;
-  color: #070709;
-  border: 1px solid #ff2020;
+  background: #f0f0f0;
+  color: #080808;
+  border: 1px solid #f0f0f0;
   font-weight: 700;
 }
 .btn-primary:hover {
-  background: #ff3333;
-  box-shadow: 0 0 20px #ff202066, 0 0 40px #ff202033;
+  background: #ffffff;
+  box-shadow: 0 0 24px rgba(255,255,255,0.12);
 }
 .btn-primary:active { transform: scale(0.98); }
+.btn-primary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
 
 .btn-outline {
   background: transparent;
-  color: #c8c8d0;
-  border: 1px solid #2a2a32;
+  color: #6b6b6b;
+  border: 1px solid #1e1e1e;
 }
 .btn-outline:hover {
-  border-color: #ff202066;
-  color: #ff2020;
-  background: #ff20200a;
+  border-color: #3a3a3a;
+  color: #f0f0f0;
 }
 
 .btn-ghost {
   background: transparent;
-  color: #808088;
+  color: #4a4a4a;
   border: 1px solid transparent;
   padding: 8px 16px;
 }
-.btn-ghost:hover {
-  color: #ff2020;
-  border-color: #ff202033;
-}
+.btn-ghost:hover { color: #aaaaaa; }
 
 /* ════════════════════════════════════════
    TYPOGRAPHY
@@ -198,49 +99,61 @@ body::after {
 .heading-xl {
   font-family: 'Orbitron', monospace;
   font-weight: 900;
-  color: #f0f0f4;
-  letter-spacing: 0.05em;
+  color: #f0f0f0;
+  letter-spacing: 0.06em;
   line-height: 1;
+  animation: flicker 9s infinite;
 }
 .heading-lg {
   font-family: 'Orbitron', monospace;
   font-weight: 700;
-  color: #f0f0f4;
+  color: #f0f0f0;
   letter-spacing: 0.05em;
+  line-height: 1.1;
+}
+.heading-md {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  color: #f0f0f0;
+  font-size: 15px;
+  letter-spacing: 0.06em;
 }
 .heading-sm {
   font-family: 'Orbitron', monospace;
   font-weight: 700;
-  color: #f0f0f4;
-  font-size: 13px;
+  color: #f0f0f0;
+  font-size: 12px;
   letter-spacing: 0.08em;
 }
 .label {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   font-weight: 400;
-  color: #808088;
-  letter-spacing: 0.15em;
+  color: #6b6b6b;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .body-text {
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  line-height: 1.7;
-  color: #808088;
+  line-height: 1.75;
+  color: #6b6b6b;
 }
-
-.accent { color: #ff2020; }
-.accent-spark { color: #ff6600; }
-
-/* Neon glow — только для цен и key элементов */
-.neon {
-  color: #ff2020;
-  text-shadow: 0 0 10px #ff202066;
+.price {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  color: #f0f0f0;
+  letter-spacing: 0.04em;
+}
+.price-old {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #333333;
+  text-decoration: line-through;
 }
 
 /* ════════════════════════════════════════
-   BADGE / TAG
+   TAG / BADGE
 ════════════════════════════════════════ */
 .tag {
   display: inline-block;
@@ -251,14 +164,15 @@ body::after {
   text-transform: uppercase;
   padding: 3px 8px;
   border-radius: 1px;
-  background: #ff20201a;
-  border: 1px solid #ff202033;
-  color: #ff2020;
+  background: #161616;
+  border: 1px solid #2a2a2a;
+  color: #6b6b6b;
 }
-.tag-gray {
-  background: #1e1e24;
-  border: 1px solid #2a2a32;
-  color: #808088;
+.tag-white {
+  background: #f0f0f0;
+  border-color: #f0f0f0;
+  color: #080808;
+  font-weight: 700;
 }
 
 /* ════════════════════════════════════════
@@ -266,11 +180,11 @@ body::after {
 ════════════════════════════════════════ */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #1e1e24, transparent);
+  background: linear-gradient(90deg, transparent, #1e1e1e, transparent);
 }
-.divider-accent {
+.divider-bright {
   height: 1px;
-  background: linear-gradient(90deg, transparent, #ff202033, transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
 }
 
 /* ════════════════════════════════════════
@@ -278,115 +192,96 @@ body::after {
 ════════════════════════════════════════ */
 .input {
   width: 100%;
-  background: #0c0c0f;
-  border: 1px solid #1e1e24;
-  border-radius: 2px;
-  color: #f0f0f4;
+  background: #0c0c0c;
+  border: 1px solid #1e1e1e;
+  border-radius: 1px;
+  color: #f0f0f0;
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
-  padding: 11px 14px;
+  padding: 12px 14px;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s;
 }
-.input::placeholder { color: #444450; }
-.input:focus {
-  border-color: #ff202055;
-  box-shadow: 0 0 0 3px #ff20200d;
-}
+.input::placeholder { color: #333333; }
+.input:focus { border-color: #3a3a3a; }
 
 /* ════════════════════════════════════════
    AUDIO / VU METER
 ════════════════════════════════════════ */
 .vu-bar {
   border-radius: 1px;
-  animation: vu 0.7s ease-in-out infinite alternate;
+  animation: vu 0.65s ease-in-out infinite alternate;
   transform-origin: bottom;
 }
-.vu-bar:nth-child(odd)  { animation-delay: 0.07s; }
-.vu-bar:nth-child(3n)   { animation-delay: 0.14s; }
-.vu-bar:nth-child(4n)   { animation-delay: 0.03s; }
+.vu-bar:nth-child(odd)  { animation-delay: 0.08s; }
+.vu-bar:nth-child(3n)   { animation-delay: 0.16s; }
+.vu-bar:nth-child(4n)   { animation-delay: 0.04s; }
 
 @keyframes vu {
-  from { transform: scaleY(0.15); opacity: 0.5; }
-  to   { transform: scaleY(1);    opacity: 1; }
+  from { transform: scaleY(0.15); opacity: 0.3; }
+  to   { transform: scaleY(1);    opacity: 0.9; }
 }
 
 .audio-range {
   -webkit-appearance: none;
   appearance: none;
-  height: 2px;
+  height: 1px;
   outline: none;
   cursor: pointer;
-  border-radius: 1px;
 }
 .audio-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 10px; height: 10px;
-  background: #ff2020;
+  background: #f0f0f0;
   border-radius: 50%;
-  box-shadow: 0 0 6px #ff202088;
 }
 
 /* ════════════════════════════════════════
    SCROLLBAR
 ════════════════════════════════════════ */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #0c0c0f; }
-::-webkit-scrollbar-thumb { background: #2a2a32; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #ff202066; }
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #222222; border-radius: 1px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
 
 /* ════════════════════════════════════════
    PAGE TRANSITION
 ════════════════════════════════════════ */
 .page-enter {
-  animation: pageIn 0.25s ease forwards;
+  animation: pageIn 0.2s ease forwards;
 }
 @keyframes pageIn {
-  from { opacity: 0; transform: translateY(6px); }
+  from { opacity: 0; transform: translateY(5px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ════════════════════════════════════════
-   CURSOR
+   CURSOR BLINK
 ════════════════════════════════════════ */
 .cursor::after {
   content: '▋';
-  color: #ff2020;
+  color: #f0f0f0;
   animation: blink 1s step-end infinite;
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
 /* ════════════════════════════════════════
-   PRICE
+   VOLTAGE GRID (hero bg)
 ════════════════════════════════════════ */
-.price-old {
-  color: #444450;
-  text-decoration: line-through;
-  font-size: 0.78em;
-}
-
-/* ════════════════════════════════════════
-   BOLT DECORATION
-════════════════════════════════════════ */
-.bolt-icon {
-  color: #ff6600;
-  animation: bolt 4s infinite;
-  display: inline-block;
-}
-@keyframes bolt {
-  0%,80%,100%{opacity:0.3;filter:none}
-  85%{opacity:1;filter:drop-shadow(0 0 5px #ff6600)}
-  87%{opacity:0.5}
-  89%{opacity:1;filter:drop-shadow(0 0 8px #ffaa00)}
-  91%{opacity:0.3}
-}
-
-/* ════════════════════════════════════════
-   HV GRID (hero bg)
-════════════════════════════════════════ */
-.hv-grid {
+.v-grid {
   background-image:
-    linear-gradient(rgba(255,32,32,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,32,32,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
   background-size: 48px 48px;
+}
+
+/* ════════════════════════════════════════
+   FLICKER (only on hero title)
+════════════════════════════════════════ */
+@keyframes flicker {
+  0%,93%,100% { opacity: 1; }
+  94%          { opacity: 0.82; }
+  95%          { opacity: 1; }
+  97%          { opacity: 0.88; }
+  98%          { opacity: 1; }
 }

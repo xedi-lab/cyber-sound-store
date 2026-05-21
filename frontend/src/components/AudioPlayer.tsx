@@ -12,15 +12,15 @@ function VUBars({ playing }: { playing: boolean }) {
     <div className="flex items-end gap-px h-7">
       {Array.from({ length: 28 }).map((_, i) => {
         const h = 12 + Math.abs(Math.sin(i * 0.65) * 70 + Math.cos(i * 0.4) * 18)
-        const isHot = h > 68
+        const opacity = h > 68 ? 0.9 : 0.5
         return (
           <div
             key={i}
             className="vu-bar flex-1"
             style={{
               height: `${h}%`,
-              background: isHot ? '#ff6600' : '#ff2020',
-              opacity: playing ? 1 : 0.2,
+              background: '#f0f0f0',
+              opacity: playing ? opacity : 0.12,
               animationPlayState: playing ? 'running' : 'paused',
               animationDelay: `${(i * 0.045) % 0.7}s`,
             }}
@@ -63,7 +63,7 @@ export function AudioPlayer({ track, index }: Props) {
 
       <div className="flex items-start justify-between mb-3">
         <div>
-          <div className="tag tag-gray mb-2">{track.genre}</div>
+          <div className="tag mb-2">{track.genre}</div>
           <div className="heading-sm">{track.title}</div>
           <div className="label mt-0.5">@{track.artist}</div>
         </div>
@@ -81,7 +81,9 @@ export function AudioPlayer({ track, index }: Props) {
             a.currentTime = (Number(e.target.value) / 100) * a.duration
           }}
           className="audio-range flex-1"
-          style={{ background:`linear-gradient(to right,#ff2020 ${progress}%,#1e1e24 ${progress}%)` }}
+          style={{
+            background: `linear-gradient(to right, #f0f0f0 ${progress}%, #1e1e1e ${progress}%)`,
+          }}
         />
         <span className="label w-8 text-right">{track.duration}</span>
       </div>
@@ -91,13 +93,13 @@ export function AudioPlayer({ track, index }: Props) {
           {playing ? '⏸ PAUSE' : '▶ PLAY'}
         </button>
         {track.beforeSrc && (
-          <div className="flex border border-cyber-border rounded-sm ml-auto overflow-hidden">
+          <div className="flex border border-v-border rounded-sm ml-auto overflow-hidden">
             {(['after', 'before'] as const).map(m => (
               <button
                 key={m}
                 onClick={() => setMode(m)}
                 className={`label px-3 py-2 transition-colors
-                  ${mode === m ? 'bg-cyber-red text-cyber-black font-bold' : 'hover:text-cyber-text-1'}`}
+                  ${mode === m ? 'bg-v-white text-v-bg font-bold' : 'hover:text-v-white'}`}
               >
                 {m.toUpperCase()}
               </button>

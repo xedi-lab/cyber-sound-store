@@ -33,29 +33,24 @@ export function OrderPage() {
 
   if (step === 'success') {
     return (
-      <div className="page-enter min-h-screen flex flex-col items-center justify-center px-4 pb-20">
-        <div className="text-5xl mb-4" style={{ textShadow: '0 0 20px #ff6600' }}>⚡</div>
+      <div className="page-enter min-h-screen flex flex-col items-center justify-center px-6 pb-20">
+        <div className="divider-bright w-16 mb-8" />
         <GlitchText
           text="ЗАЯВКА ПРИНЯТА"
           tag="div"
           scramble
-          className="font-display font-bold text-cyber-white text-xl tracking-wider mb-2"
+          className="heading-md mb-3 text-center"
         />
-        <p className="body-text text-center mb-6">
-          Заявка отправлена. <span className="accent">@rizzie044</span> напишет
-          тебе в ближайшее время.
+        <p className="body-text text-center mb-8 max-w-xs">
+          Заявка отправлена.{' '}
+          <span className="text-v-white">@rizzie044</span>{' '}
+          напишет тебе в ближайшее время.
         </p>
         <div className="space-y-2 w-full max-w-xs">
-          <button
-            onClick={() => navigate('/')}
-            className="btn btn-primary w-full"
-          >
+          <button onClick={() => navigate('/')} className="btn btn-primary w-full">
             НА ГЛАВНУЮ
           </button>
-          <button
-            onClick={() => navigate('/services')}
-            className="btn btn-outline w-full"
-          >
+          <button onClick={() => navigate('/services')} className="btn btn-outline w-full">
             ЕЩЁ УСЛУГИ
           </button>
         </div>
@@ -69,33 +64,22 @@ export function OrderPage() {
 
         <button
           onClick={() => navigate(-1)}
-          className="label hover:text-cyber-red mb-4 flex items-center gap-1 transition-colors"
+          className="label hover:text-v-white mb-5 flex items-center gap-1 transition-colors"
         >
           ← НАЗАД
         </button>
 
         <div className="mb-6">
-          <div className="label mb-1">
-            <span className="bolt-icon mr-1">⚡</span>root/order
-          </div>
-          <GlitchText
-            text="ORDER.exe"
-            tag="h1"
-            scramble
-            className="font-display font-black text-3xl text-cyber-white tracking-wider"
-          />
+          <div className="label mb-2">root / order</div>
+          <div className="heading-lg text-2xl">ORDER</div>
         </div>
 
-        {/* Selected service */}
-        <div className="card card-corners p-4 mb-6">
-          <div className="label mb-1">
-            <span className="bolt-icon mr-1">⚡</span>ВЫБРАННАЯ УСЛУГА
-          </div>
-          <div className="heading-sm">{selectedLabel}</div>
+        {/* Selected */}
+        <div className="card p-4 mb-6">
+          <div className="label mb-1">ВЫБРАННАЯ УСЛУГА</div>
+          <div className="heading-sm mt-1">{selectedLabel}</div>
           {tariff && (
-            <div className="label mt-1">
-              Срок: {tariff.deadline} · Контакт: {tariff.contact}
-            </div>
+            <div className="label mt-1">Срок: {tariff.deadline}</div>
           )}
         </div>
 
@@ -106,9 +90,7 @@ export function OrderPage() {
             { label: 'TELEGRAM *', key: 'tg',   ph: '@USERNAME',              type: 'text' },
           ].map(f => (
             <div key={f.key}>
-              <label className="label block mb-1">
-                <span className="bolt-icon mr-1">⚡</span>{f.label}
-              </label>
+              <label className="label block mb-1.5">{f.label}</label>
               <input
                 type={f.type}
                 value={form[f.key as keyof typeof form]}
@@ -120,9 +102,7 @@ export function OrderPage() {
           ))}
 
           <div>
-            <label className="label block mb-1">
-              <span className="bolt-icon mr-1">⚡</span>КОММЕНТАРИЙ
-            </label>
+            <label className="label block mb-1.5">КОММЕНТАРИЙ</label>
             <textarea
               value={form.comment}
               onChange={e => setForm(prev => ({ ...prev, comment: e.target.value }))}
@@ -133,19 +113,18 @@ export function OrderPage() {
           </div>
         </div>
 
-        <p className="body-text mb-4">
-          <span className="bolt-icon mr-1">⚡</span>
+        <p className="body-text mb-6">
           После отправки{' '}
-          <span className="accent">@rizzie044</span> напишет тебе в Telegram.
-          Возврат средств не предусмотрен.
+          <span className="text-v-white">@rizzie044</span>{' '}
+          напишет тебе в Telegram. Возврат средств не предусмотрен.
         </p>
 
         <button
           onClick={handleSubmit}
           disabled={!form.name.trim() || !form.tg.trim() || loading}
-          className="btn btn-primary w-full disabled:opacity-40 disabled:cursor-not-allowed"
+          className="btn btn-primary w-full"
         >
-          {loading ? '⚡ ОТПРАВКА...' : '⚡ ОТПРАВИТЬ ЗАЯВКУ →'}
+          {loading ? 'ОТПРАВКА...' : 'ОТПРАВИТЬ ЗАЯВКУ →'}
         </button>
 
       </div>
