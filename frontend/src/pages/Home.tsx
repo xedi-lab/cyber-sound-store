@@ -7,16 +7,34 @@ const STATS = [
   { value: '24ч',  label: 'экспресс' },
 ]
 
-/* Soft oscilloscope — voltage in background */
+/* Animated oscilloscope with running shimmer */
 function OsciTrace() {
   return (
-    <div className="flex items-end gap-px h-4 overflow-hidden">
-      {Array.from({ length: 56 }).map((_, i) => {
+    <div className="relative flex items-end gap-px h-5 overflow-hidden">
+      {/* Running highlight */}
+      <div
+        className="absolute inset-0 pointer-events-none z-10"
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.22) 50%, transparent 100%)',
+          width: '25%',
+          animation: 'shimmer 2.8s linear infinite',
+        }}
+      />
+      {Array.from({ length: 52 }).map((_, i) => {
         const y = 50 + Math.sin(i * 0.5) * 36 + Math.sin(i * 1.05) * 13
         return (
           <div
             key={i}
-            style={{ width: 2, marginRight: 1, height: `${y}%`, background: '#efefef', opacity: 0.06 }}
+            className="osci-bar flex-shrink-0"
+            style={{
+              width: 2,
+              marginRight: 1,
+              height: `${y}%`,
+              background: '#ffffff',
+              opacity: 0.28,
+              boxShadow: '0 0 3px rgba(255,255,255,0.4)',
+              animationDelay: `${(i * 0.06) % 1.4}s`,
+            }}
           />
         )
       })}
@@ -60,8 +78,8 @@ export function HomePage() {
             key={s.label}
             className={`flex-1 py-4 text-center ${i < 2 ? 'border-r border-v-border' : ''}`}
           >
-            <div className="t-price text-[18px]">{s.value}</div>
-            <div className="t-label mt-1">{s.label}</div>
+            <div className="font-mono font-medium text-[20px] text-v-white tracking-tight">{s.value}</div>
+            <div className="t-label mt-1" style={{ fontWeight: 300 }}>{s.label}</div>
           </div>
         ))}
       </div>

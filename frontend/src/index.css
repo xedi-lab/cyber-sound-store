@@ -87,9 +87,9 @@ html, body {
   line-height: 1.1;
 }
 .t-heading {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 13px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: #efefef;
 }
 .t-label {
@@ -105,7 +105,7 @@ html, body {
   color: #888888;
 }
 .t-price {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 20px;
   color: #efefef;
   letter-spacing: 0.02em;
@@ -226,4 +226,24 @@ html, body {
 @keyframes dot {
   0%,100% { opacity: 0.2; }
   50%     { opacity: 0.7; }
+}
+
+/* ════════════════════════════════════════
+   OSCI SHIMMER — moving highlight
+════════════════════════════════════════ */
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(600%); }
+}
+
+/* ════════════════════════════════════════
+   OSCI BAR — individual bar animation
+════════════════════════════════════════ */
+@keyframes osci {
+  from { transform: scaleY(0.3); }
+  to   { transform: scaleY(1); }
+}
+.osci-bar {
+  transform-origin: bottom;
+  animation: osci 1.4s ease-in-out infinite alternate;
 }
